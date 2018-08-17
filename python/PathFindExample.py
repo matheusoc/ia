@@ -86,17 +86,30 @@ class FindPath(object):
     
 if __name__ == '__main__':
     
-    nodes = ['Pouso Alegre','Santa Rita','Varginha','Congonhal',
-             'Cachoeira de Minas','Itajuba','Belo Horizonte','Congonhal',
-             'Ouro Fino']
+    nodes = ['Santa Rita','Pouso Alegre','Cambui','Congonhal','Camanducaia',
+             'Borda da Mata', 'Ipuiuna', 'Braganca Paulista', 'Jacutinga',
+             'Andradas', 'Esp. Santo Pinhal', 'Itapira', 'Atibaia',
+             'Mogi-guacu', 'Mogi Mirim', 'Campinas', 'Caldas', 'Estiva', 'Inconfidentes']
 
-    edges=[('Pouso Alegre','Santa Rita'),('Pouso Alegre','Varginha'),('Pouso Alegre','Congonhal'),('Pouso Alegre','Cachoeira de Minas'),
-           ('Santa Rita','Pouso Alegre'),('Santa Rita','Itajuba'),('Santa Rita','Cachoeira de Minas'),
-           ('Itajuba','Santa Rita'),
-           ('Varginha','Belo Horizonte'),('Varginha','Pouso Alegre'),
-           ('Cachoeira de Minas','Santa Rita'),('Cachoeira de Minas','Pouso Alegre'),
-           ('Congonhal','Pouso Alegre'),('Congonhal','Ouro Fino'),
-           ('Belo Horizonte','Varginha'),('Ouro Fino','Congonhal')]
+    edges = [('Santa Rita', 'Pouso Alegre'),
+             ('Pouso Alegre', 'Santa Rita'),('Pouso Alegre', 'Estiva'), ('Pouso Alegre', 'Borda da Mata'), ('Pouso Alegre', 'Congonhal'),
+             ('Estiva', 'Pouso Alegre'), ('Estiva', 'Cambui'),
+             ('Cambui', 'Estiva'), ('Cambui', 'Camanducaia'),
+             ('Camanducaia', 'Cambui'), ('Camanducaia', 'Braganca Paulista'),
+             ('Braganca Paulista', 'Camanducaia'),('Braganca Paulista', 'Atibaia'), ('Braganca Paulista', 'Itapira'),
+             ('Atibaia', 'Braganca Paulista'),('Atibaia', 'Campinas'),
+             ('Campinas', 'Atibaia'), ('Campinas', 'Itapira'), ('Campinas', 'Mogi Mirim'),
+             ('Borda da Mata', 'Pouso Alegre'), ('Borda da Mata', 'Inconfidentes'),
+             ('Inconfidentes', 'Borda da Mata'), ('Inconfidentes', 'Jacutinga'),
+             ('Jacutinga', 'Inconfidentes'), ('Jacutinga', 'Itapira'),
+             ('Itapira', 'Jacutinga'), ('Itapira', 'Braganca Paulista'), ('Itapira', 'Campinas'),
+             ('Congonhal', 'Pouso Alegre'), ('Congonhal', 'Ipuiuna'), 
+             ('Ipuiuna', 'Congonhal'), ('Ipuiuna', 'Caldas'),
+             ('Caldas', 'Ipuiuna'), ('Caldas', 'Andradas'),
+             ('Andradas', 'Caldas'), ('Andradas', 'Esp. Santo Pinhal'),
+             ('Esp. Santo Pinhal', 'Andradas'), ('Esp. Santo Pinhal', 'Mogi-guacu'),
+             ('Mogi-guacu', 'Esp. Santo Pinhal'), ('Mogi-guacu', 'Mogi Mirim'),
+             ('Mogi Mirim', 'Mogi-guacu'), ('Mogi Mirim', 'Campinas')]
     
   
     G=nx.DiGraph()
@@ -121,8 +134,8 @@ if __name__ == '__main__':
     SearchObj = breadth_first_search(Problema)    
     
     
-    start = 'Pouso Alegre'
-    target = 'Belo Horizonte'
+    start = 'Santa Rita'
+    target = 'Inconfidentes'
     print('\nSearching %s starting from %s...'%(target,start))
     solution,path,path_edges = SearchObj.search(start,target)
     print('Done!\n')
@@ -141,8 +154,8 @@ if __name__ == '__main__':
     for u,v in edges:
         G.add_weighted_edges_from([(u,v,CostperEdge[edges.index((u,v))])])
             
-    start = 'Belo Horizonte'
-    target = 'Itajuba'
+    start = 'Santa Rita'
+    target = 'Estiva'
     print('\nSearching %s starting from %s...'%(target,start))
     solution,path,path_edges = SearchObj.search(start,target)
     print('Done!\n')
@@ -159,8 +172,8 @@ if __name__ == '__main__':
     #Adding the respective cost for each edge in the graph
     for u,v in edges:
         G.add_weighted_edges_from([(u,v,CostperEdge[edges.index((u,v))])])    
-    start = 'Ouro Fino'
-    target = 'Campinas'
+    start = 'Santa Rita'
+    target = 'Caldas'
     print('\nSearching %s starting from %s...'%(target,start))
     solution,path,path_edges = SearchObj.search(start,target)
     print('Done!\n')
